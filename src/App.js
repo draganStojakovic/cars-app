@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import { AppCars } from "./components/AppCars";
 
 function App() {
@@ -6,10 +6,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <nav>
-          <Link to="/cars"> Cars </Link>
+          <Link to="/"> Cars </Link>
         </nav>
         <Switch>
-          <Route path="/cars">
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <Redirect to="/cars" />;
+            }}
+          >
             <AppCars />
           </Route>
         </Switch>
