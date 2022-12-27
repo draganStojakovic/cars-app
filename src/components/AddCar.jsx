@@ -39,6 +39,18 @@ export const AddCar = () => {
     history.push("/cars");
   };
 
+  const handleResetForm = () => {
+    setCar({
+      brand: "",
+      model: "",
+      year: 2022,
+      maxSpeed: 0,
+      isAutomatic: false,
+      engine: "",
+      numberOfDoors: 0,
+    });
+  };
+
   return (
     <div>
       <h1>Add Car</h1>
@@ -135,6 +147,8 @@ export const AddCar = () => {
         <br />
         <button>Add Car</button>
       </form>
+        <br />
+        <button onClick={handleResetForm}>Reset Form</button>
     </div>
   );
 };
