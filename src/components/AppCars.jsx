@@ -1,46 +1,39 @@
-import { useState, useEffect } from "react";
-import { carService } from "../services/CarService";
+import { useContext } from "react";
+import { CarsContext } from "../App";
 
 export const AppCars = () => {
-  const [cars, setCars] = useState([]);
-
-  const handleGetCars = async () => {
-    const { data } = await carService.getAll();
-    setCars(data);
-  };
-
-  useEffect(() => {
-    handleGetCars();
-  }, []);
-
+  const data = useContext(CarsContext);
   return (
     <div>
-      <tabel>
-        <thead>
-          <tr>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Max Speed</th>
-            <th>Automatic</th>
-            <th>Engine</th>
-            <th>Number of Doors</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cars.map((car) => (
+      <h1>Cars</h1>
+      {data && (
+        <table>
+          <thead>
             <tr>
-              <td>{car.brand}</td>
-              <td>{car.model}</td>
-              <td>{car.year}</td>
-              <td>{car.maxSpeed}</td>
-              <td>{car.isAutomatic}</td>
-              <td>{car.engine}</td>
-              <td>{car.numberOfDoors}</td>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>Max Speed</th>
+              <th>Automatic</th>
+              <th>Engine</th>
+              <th>Doors</th>
             </tr>
-          ))}
-        </tbody>
-      </tabel>
+          </thead>
+          <tbody>
+            {data.map((car) => (
+              <tr key={car.id}>
+                <td>{car.brand}</td>
+                <td>{car.model}</td>
+                <td>{car.year}</td>
+                <td>{car.maxSpeed} Km/h</td>
+                <td>{car.isAutomatic ? "Yes" : "No"}</td>
+                <td>{car.engine}</td>
+                <td>{car.numberOfDoors}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
