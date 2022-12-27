@@ -51,6 +51,15 @@ export const AddCar = () => {
     });
   };
 
+  const handlePreviewData = (car) => {
+    let message;
+    for (const key in car) {
+      let item = key + ": " + car[key] + "\n";
+      message += item;
+    }
+    alert(message);
+  };
+
   return (
     <div>
       <h1>Add Car</h1>
@@ -147,8 +156,10 @@ export const AddCar = () => {
         <br />
         <button>Add Car</button>
       </form>
-        <br />
-        <button onClick={handleResetForm}>Reset Form</button>
+      <br />
+      <button onClick={handleResetForm}>Reset Form</button>
+      <br />
+      <button onClick={() => handlePreviewData(car)}>Preview</button>
     </div>
   );
 };
