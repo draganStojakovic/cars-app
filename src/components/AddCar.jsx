@@ -8,7 +8,7 @@ export const AddCar = () => {
     brand: "",
     model: "",
     year: 2022,
-    maxSpeed: 0,
+    maxSpeed: "",
     isAutomatic: false,
     engine: "",
     numberOfDoors: 0,
@@ -20,7 +20,6 @@ export const AddCar = () => {
       !car.brand ||
       !car.model ||
       !car.year ||
-      !car.maxSpeed ||
       !car.engine ||
       !car.numberOfDoors
     ) {
@@ -44,7 +43,7 @@ export const AddCar = () => {
       brand: "",
       model: "",
       year: 2022,
-      maxSpeed: 0,
+      maxSpeed: "",
       isAutomatic: false,
       engine: "",
       numberOfDoors: 0,
@@ -69,6 +68,8 @@ export const AddCar = () => {
           id="brand"
           type="text"
           value={car.brand}
+          required
+          minLength="2"
           onChange={(e) => setCar({ ...car, brand: e.target.value })}
         ></input>
         <br />
@@ -77,6 +78,8 @@ export const AddCar = () => {
           id="model"
           type="text"
           value={car.model}
+          required
+          minLength="2"
           onChange={(e) => setCar({ ...car, model: e.target.value })}
         ></input>
         <br />
@@ -87,6 +90,7 @@ export const AddCar = () => {
           max="2022"
           min="1990"
           value={car.year}
+          required
           onChange={(e) => setCar({ ...car, year: e.target.value })}
         ></input>
         <br />
@@ -150,6 +154,7 @@ export const AddCar = () => {
           id="numberOfDoors"
           type="number"
           value={car.numberOfDoors}
+          required
           onChange={(e) => setCar({ ...car, numberOfDoors: e.target.value })}
         ></input>
         <br />
